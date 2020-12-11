@@ -1,0 +1,45 @@
+plugins {
+    id 'com.gradle.plugin-publish' version '0.12.0'
+    id 'java-gradle-plugin'
+    id 'java'
+    id 'maven-publish'
+}
+
+group = 'com.oversecured'
+version '1.0'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    google()
+    jcenter()
+}
+
+gradlePlugin {
+    plugins {
+        create('OversecuredPlugin') {
+            id = 'com.oversecured'
+            implementationClass = 'oversecured.android.gradle.OversecuredPlugin'
+        }
+    }
+}
+
+dependencies {
+    implementation 'com.android.tools.build:gradle:4.1.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+}
+
+pluginBundle {
+    website = 'http://oversecured.com/apidocs/gradle.html'
+    vcsUrl = 'https://github.com/oversecured/oversecured-android-gradle'
+    description = 'Gradle plugin to help scanning Android apps with Oversecured'
+    tags = ['oversecured', 'qa', 'security', 'mobile', 'android', 'sast', 'analysis']
+
+    plugins {
+        OversecuredPlugin {
+            displayName = 'Oversecured Extension for Gradle'
+        }
+    }
+}
