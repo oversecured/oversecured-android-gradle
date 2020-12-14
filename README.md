@@ -12,6 +12,11 @@ Add the dependency to the project-level `build.gradle` file:
 
 ```gradle
 buildscript {
+    repositories {
+        maven {
+            url 'https://plugins.gradle.org/m2/'
+        }
+    }
     dependencies {
         classpath 'com.oversecured:gradle-android:1.0'
     }
