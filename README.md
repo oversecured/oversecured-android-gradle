@@ -18,7 +18,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.oversecured:gradle-android:1.0'
+        classpath 'com.oversecured:gradle-android:1.1'
     }
 }
 ```
@@ -36,15 +36,10 @@ oversecured {
     buildTypes 'beta', 'release'
     integrationId '5e7096e2-7fed-43f0-9290-22d03c64cfbf'
     accessToken System.env['OVERSECURED_ACCESS_TOKEN']
-    alerts true
-    smartFilter true
 }
 ```
 
-where
-- `buildTypes` types of assemblies that will be automatically sent for scanning
-- `alerts` enables email alerts
-- `smartFilter` enables the filtering of potential false positives
+where `buildTypes` are types of assemblies that will be automatically sent for scanning
 
 
 ### How the plugin works

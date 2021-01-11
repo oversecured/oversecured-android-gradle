@@ -17,8 +17,6 @@ import oversecured.android.gradle.network.Utils;
 import oversecured.android.gradle.network.model.AddVersionRequest;
 import oversecured.android.gradle.network.model.AppSignRequest;
 import oversecured.android.gradle.network.model.AppSignResponse;
-import oversecured.android.gradle.network.model.IntegrationResponse;
-import oversecured.android.gradle.network.model.SettingsRequest;
 import retrofit2.Response;
 
 public class OversecuredTask extends ConventionTask {
@@ -36,7 +34,6 @@ public class OversecuredTask extends ConventionTask {
         service = NetworkModule.getService(settings.getAccessToken());
         try {
             verifyConfig(target);
-            updateIntegrationSettings();
             processVersionUpload(target);
         } catch (IOException e) {
             throw new GradleException(e.getMessage(), e);
@@ -66,26 +63,6 @@ public class OversecuredTask extends ConventionTask {
             throw requestErr("Scan Version", addVersionResp);
         }
         System.out.println("oversecured: success");
-    }
-
-    private void updateIntegrationSettings() throws IOException {
-        Response<IntegrationResponse> integrationResp = service.integrationInfo(settings.getIntegrationId()).execute();
-        if (integrationResp.code() != 200) {
-            throw requestErr("Integration Info", integrationResp);
-        }
-        IntegrationResponse integrationInfo = integrationResp.body();
-        SettingsRequest currentInfo = new SettingsRequest(integrationInfo.getName(), integrationInfo.getDescription(),
-                integrationInfo.getLogoKey(), integrationInfo.getSmartFilter(), integrationInfo.getNotifyWhenDone(),
-                integrationInfo.getAutoPull());
-        SettingsRequest newInfo = new SettingsRequest(currentInfo.getName(), currentInfo.getDescription(),
-                currentInfo.getLogoKey(), settings.getSmartFilter(), settings.getAlerts(), false);
-        if (!newInfo.equals(currentInfo)) {
-            Response<Void> settingsResp = service.changeIntegrationSettings(settings.getIntegrationId(), newInfo)
-                    .execute();
-            if (settingsResp.code() != 200) {
-                throw requestErr("Integration Settings", settingsResp);
-            }
-        }
     }
 
     private GradleException requestErr(String msg, Response<?> resp) {

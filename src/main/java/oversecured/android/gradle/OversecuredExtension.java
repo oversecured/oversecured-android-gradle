@@ -33,12 +33,4 @@ public class OversecuredExtension {
     public void accessToken(String token) {
         settings.setAccessToken(token);
     }
-
-    public void alerts(boolean alerts) {
-        settings.setAlerts(alerts);
-    }
-
-    public void smartFilter(boolean smartFilter) {
-        settings.setSmartFilter(smartFilter);
-    }
 }
