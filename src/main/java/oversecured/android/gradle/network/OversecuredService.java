@@ -15,9 +15,10 @@ public interface OversecuredService {
     @POST("v1/upload/app")
     Call<AppSignResponse> getSignedLink(@Body AppSignRequest signInfo);
 
-    @POST("v1/integrations/{integration_id}/versions/add")
-    Call<Void> scanVersion(@Path("integration_id") String id, @Body AddVersionRequest addVersion);
-
     @PUT
     Call<Void> uploadAppFile(@Url String url, @Body RequestBody appFile);
+
+    @POST("v1/integrations/{integration_id}/branches/{branch_name}/versions/add")
+    Call<Void> scanVersion(@Path("integration_id") String integrationId, @Path("branch_name") String branchName,
+            @Body AddVersionRequest addVersion);
 }

@@ -41,7 +41,7 @@ public class OversecuredTask extends ConventionTask {
     }
 
     private void processVersionUpload(File target) throws IOException {
-        System.out.println("oversecured: starting version upload");
+        System.out.println("oversecured: file upload");
 
         Response<AppSignResponse> appSignResp = service.getSignedLink(new AppSignRequest(PLATFORM, target.getName()))
                 .execute();
@@ -58,7 +58,8 @@ public class OversecuredTask extends ConventionTask {
         }
 
         AddVersionRequest addVersion = new AddVersionRequest(target.getName(), signInfo.getBucketKey());
-        Response<Void> addVersionResp = service.scanVersion(settings.getIntegrationId(), addVersion).execute();
+        Response<Void> addVersionResp = service.scanVersion(settings.getIntegrationId(),
+                settings.getBranchName(), addVersion).execute();
         if (addVersionResp.code() != 200) {
             throw requestErr("Scan Version", addVersionResp);
         }
@@ -74,13 +75,16 @@ public class OversecuredTask extends ConventionTask {
 
     private void verifyConfig(File target) {
         if (!target.exists() || !target.isFile()) {
-            throw new GradleException("Application file " + target + " is missing");
+            throw new GradleException("App file '" + target + "' is missing");
         }
         if (Strings.isNullOrEmpty(settings.getAccessToken())) {
             throw new GradleException("accessToken is not set");
         }
         if (Strings.isNullOrEmpty(settings.getIntegrationId())) {
             throw new GradleException("integrationId is not set");
+        }
+        if (Strings.isNullOrEmpty(settings.getBranchName())) {
+            throw new GradleException("branchName is not set");
         }
     }
 }

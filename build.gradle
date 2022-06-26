@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.oversecured'
-version '1.1'
+version '1.2'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -34,7 +34,7 @@ dependencies {
 pluginBundle {
     website = 'https://oversecured.com/docs/ci-cd/gradle'
     vcsUrl = 'https://github.com/oversecured/oversecured-android-gradle'
-    description = 'Gradle plugin to help scanning Android apps with Oversecured'
+    description = 'Gradle plugin to scan Android apps for vulnerabilities with Oversecured'
     tags = ['oversecured', 'qa', 'security', 'mobile', 'android', 'sast', 'analysis']
 
     plugins {

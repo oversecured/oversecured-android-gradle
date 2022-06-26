@@ -33,4 +33,8 @@ public class OversecuredExtension {
     public void accessToken(String token) {
         settings.setAccessToken(token);
     }
+
+    public void branchName(String branchName) {
+        settings.setBranchName(branchName);
+    }
 }

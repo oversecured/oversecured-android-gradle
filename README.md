@@ -1,7 +1,7 @@
 Oversecured Extension for Gradle
 ============================
 
-First of all, a plugin user must have an [active Integration](https://oversecured.com/integrations). For more information, visit [Pricing](https://oversecured.com/pricing) and [For Developers](https://oversecured.com/for-developers) pages.
+First of all, a plugin user must have an [active Integration](https://oversecured.com/integrations). For more information, visit the [Quick Start](https://oversecured.com/docs/quick-start/) page.
 
 User documentation
 ------------------
@@ -18,7 +18,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.oversecured:gradle-android:1.1'
+        classpath 'com.oversecured:gradle-android:1.2'
     }
 }
 ```
@@ -35,6 +35,7 @@ and set the following settings:
 oversecured {
     buildTypes 'beta', 'release'
     integrationId '5e7096e2-7fed-43f0-9290-22d03c64cfbf'
+    branchName 'main'
     accessToken System.env['OVERSECURED_ACCESS_TOKEN']
 }
 ```
@@ -54,6 +55,6 @@ Submit a request using the [contact form](https://support.oversecured.com/hc/en-
 ---------------------------------------
 *Licensed under the Simplified BSD License*
 
-*Copyright (c) 2020, Oversecured Inc*
+*Copyright (c) 2022, Oversecured Inc*
 
 https://oversecured.com/
