@@ -55,6 +55,6 @@ Submit a request using the [contact form](https://support.oversecured.com/hc/en-
 ---------------------------------------
 *Licensed under the Simplified BSD License*
 
-*Copyright (c) 2022, Oversecured Inc*
+*Copyright (c) 2023, Oversecured Inc*
 
 https://oversecured.com/
